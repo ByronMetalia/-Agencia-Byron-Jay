@@ -4,13 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Byron Jay - Soluciones Digitales</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html, body {
   width: 100%;
   background: linear-gradient(135deg, #0a0e27 0%, #1a0b2e 50%, #0d1b3d 100%);
-  font-family: 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Lato', sans-serif;
   color: #e0e0e0;
+  scroll-behavior: smooth;
+  /* Evitar selección de texto general en la página */
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .logo-section {
@@ -24,6 +31,8 @@ html, body {
 .logo-section img {
   max-width: 320px;
   height: auto;
+  pointer-events: none;
+  user-select: none;
 }
 
 .hero {
@@ -39,7 +48,7 @@ html, body {
 .hero h1 {
   font-size: 3rem;
   color: #00d9ff;
-  font-weight: 800;
+  font-weight: 900;
   margin-bottom: 20px;
   text-shadow: 0 0 40px rgba(0, 217, 255, 0.5);
 }
@@ -54,7 +63,7 @@ html, body {
 .btn {
   padding: 14px 40px;
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 700;
   border: 2px solid #00d9ff;
   background: rgba(0, 217, 255, 0.1);
   color: #00d9ff;
@@ -112,7 +121,7 @@ html, body {
   color: #00d9ff;
   font-size: 1.2rem;
   margin-bottom: 8px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .card p {
@@ -155,6 +164,8 @@ html, body {
   height: 200px;
   object-fit: cover;
   display: block;
+  pointer-events: none;
+  user-select: none;
 }
 
 .servicio-content {
@@ -165,7 +176,7 @@ html, body {
   color: #00d9ff;
   font-size: 1.3rem;
   margin-bottom: 10px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .servicio-content p {
@@ -174,6 +185,7 @@ html, body {
   line-height: 1.6;
 }
 
+/* ── CTA FINAL ── */
 .cta {
   text-align: center;
   padding: 80px 30px;
@@ -184,6 +196,7 @@ html, body {
   font-size: 2.5rem;
   color: #00d9ff;
   margin-bottom: 30px;
+  font-weight: 900;
   text-shadow: 0 0 30px rgba(0, 217, 255, 0.4);
 }
 
@@ -207,12 +220,266 @@ html, body {
   box-shadow: 0 0 30px rgba(0, 217, 255, 0.4);
 }
 
+/* ── RESEÑAS / TESTIMONIOS ── */
+.testimonials-section {
+  padding: 80px 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 25px;
+}
+
+.testimonial-card {
+  background: rgba(26, 11, 46, 0.6);
+  border: 1.5px solid rgba(0, 217, 255, 0.25);
+  border-radius: 16px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(10px);
+}
+
+.testimonial-card:hover {
+  border-color: #00d9ff;
+  transform: translateY(-8px);
+  box-shadow: 0 0 35px rgba(0, 217, 255, 0.3);
+}
+
+.testimonial-stars {
+  color: #00d9ff;
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+}
+
+.testimonial-text {
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex: 1;
+}
+
+.testimonial-author {
+  font-weight: 700;
+  color: #00d9ff;
+  font-size: 0.95rem;
+  border-top: 1px solid rgba(0, 217, 255, 0.15);
+  padding-top: 12px;
+}
+
+/* ── CONTADORES / STATS ── */
+.stats-section {
+  padding: 60px 30px;
+  background: rgba(0, 217, 255, 0.04);
+  border-top: 1px solid rgba(0, 217, 255, 0.1);
+  border-bottom: 1px solid rgba(0, 217, 255, 0.1);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.stat-item {
+  padding: 20px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.stat-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stat-number {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #00d9ff;
+  text-shadow: 0 0 25px rgba(0, 217, 255, 0.5);
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+}
+
+/* ── PROYECTOS DESTACADOS ── */
+#projects {
+  padding: 80px 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #00d9ff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 0.8rem;
+  display: block;
+  text-align: center;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+.project-card {
+  background: rgba(0, 217, 255, 0.08);
+  border: 1.5px solid rgba(0, 217, 255, 0.3);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card:hover {
+  border-color: #00d9ff;
+  background: rgba(0, 217, 255, 0.15);
+  box-shadow: 0 0 50px rgba(0, 217, 255, 0.5);
+  transform: translateY(-12px);
+}
+
+.project-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: rgba(5, 8, 22, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 12px;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* Esquinas redondeadas a 10px en los nuevos logos de proyectos */
+  border-radius: 10px;
+  display: block;
+  transition: transform 0.4s ease;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.project-card:hover .project-image img {
+  transform: scale(1.03);
+}
+
+.project-content {
+  padding: 25px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #00d9ff;
+}
+
+.project-type {
+  font-size: 0.8rem;
+  color: #00b4ff;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.project-desc {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 1.8rem;
+  flex: 1;
+  line-height: 1.6;
+}
+
+.project-links {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.2rem;
+  background: rgba(0, 217, 255, 0.1);
+  border: 1px solid rgba(0, 217, 255, 0.3);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #00d9ff;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.project-link:hover {
+  background: rgba(0, 217, 255, 0.3);
+  border-color: #00d9ff;
+  box-shadow: 0 0 20px rgba(0, 217, 255, 0.4);
+  transform: translateY(-2px);
+  color: #fff;
+}
+
 .footer {
   text-align: center;
-  padding: 30px;
+  padding: 40px 30px;
   color: rgba(255, 255, 255, 0.5);
   font-size: 0.85rem;
   border-top: 1px solid rgba(0, 217, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.footer-btn {
+  display: inline-block;
+  padding: 10px 25px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  border: 1.5px solid #00d9ff;
+  background: rgba(0, 217, 255, 0.08);
+  color: #00d9ff;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.footer-btn:hover {
+  background: #00d9ff;
+  color: #0a0e27;
+  box-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
 }
 
 .section-title {
@@ -220,23 +487,24 @@ html, body {
   font-size: 2.2rem;
   color: #00d9ff;
   margin-bottom: 50px;
+  font-weight: 900;
   text-shadow: 0 0 30px rgba(0, 217, 255, 0.3);
 }
 
 @media (max-width: 768px) {
   .hero h1 { font-size: 2rem; }
   .section-title { font-size: 1.6rem; }
-  .servicios-grid { grid-template-columns: 1fr; }
+  .servicios-grid, .projects-grid, .testimonials-grid { grid-template-columns: 1fr; }
   .cta-buttons { flex-direction: column; }
   .btn { width: 100%; }
 }
 </style>
 </head>
-<body>
+<body oncontextmenu="return false;">
 
 <!-- LOGO -->
 <div class="logo-section">
-  <img src="https://39ac8d3c846321cac7b8ef50b3feee94.cdn.bubble.io/f1790198636251x573723630484219000/LOGO%20BYRON_JAY.svg" alt="Byron Jay">
+  <img src="https://39ac8d3c846321cac7b8ef50b3feee94.cdn.bubble.io/f1790198636251x573723630484219000/LOGO%20BYRON_JAY.svg" alt="Byron Jay" draggable="false">
 </div>
 
 <!-- HERO -->
@@ -289,21 +557,21 @@ html, body {
   <h2 class="section-title">Servicios</h2>
   <div class="servicios-grid">
     <div class="servicio-card">
-      <img src="https://39ac8d3c846321cac7b8ef50b3feee94.cdn.bubble.io/f1790196204993x285774083640456320/banner%201.webp" alt="De tu Excel a tu App">
+      <img src="https://39ac8d3c846321cac7b8ef50b3feee94.cdn.bubble.io/f1790196204993x285774083640456320/banner%201.webp" alt="De tu Excel a tu App" draggable="false">
       <div class="servicio-content">
         <h3>De tu Excel a tu App</h3>
         <p>Sube tus datos y consulta al instante con un asistente integrado</p>
       </div>
     </div>
     <div class="servicio-card">
-      <img src="https://39ac8d3c846321cac7b8ef50b3feee94.cdn.bubble.io/f1790204093808x714379191158991900/banner%202.webp" alt="Landing Pages que Venden">
+      <img src="https://39ac8d3c846321cac7b8ef50b3feee94.cdn.bubble.io/f1790204093808x714379191158991900/banner%202.webp" alt="Landing Pages que Venden" draggable="false">
       <div class="servicio-content">
         <h3>Landing Pages que Venden</h3>
         <p>Páginas rápidas y atractivas que convierten visitantes en clientes</p>
       </div>
     </div>
     <div class="servicio-card">
-      <img src="https://39ac8d3c846321cac7b8ef50b3feee94.cdn.bubble.io/f1790223810056x847392598267571200/banner%203.webp" alt="Control y Procesos a la Medida">
+      <img src="https://39ac8d3c846321cac7b8ef50b3feee94.cdn.bubble.io/f1790223810056x847392598267571200/banner%203.webp" alt="Control y Procesos a la Medida" draggable="false">
       <div class="servicio-content">
         <h3>Control y Procesos a la Medida</h3>
         <p>Sistemas adaptados exactamente a tu forma de trabajar</p>
@@ -321,10 +589,162 @@ html, body {
   </div>
 </section>
 
+<!-- RESEÑAS DE CLIENTES -->
+<section class="testimonials-section">
+  <span class="section-label">Testimonios</span>
+  <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"Los costos son sumamente justos para la enorme calidad de desarrollo que entrega. Superó con creces lo que esperábamos para nuestra plataforma."</p>
+      <div class="testimonial-author">— Carlos Mendoza</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"La entrega fue completamente a tiempo y de manera muy rápida. Nos salvó los plazos de lanzamiento sin sacrificar ningún detalle técnico."</p>
+      <div class="testimonial-author">— Sofía Ramírez</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"Un nivel de profesionalismo impecable en cada etapa del proceso. Comunicación constante, soluciones claras y un soporte técnico excelente."</p>
+      <div class="testimonial-author">— Ing. Alejandro Garza</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"Automatizó por completo nuestros procesos operativos. Trabajar con Byron Jay transformó la manera en que gestionamos nuestro negocio."</p>
+      <div class="testimonial-author">— Mariana Valdés</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTADORES ANIMADOS -->
+<section class="stats-section">
+  <div class="stats-grid">
+    <div class="stat-item" data-target="10">
+      <div class="stat-number">0+</div>
+      <div class="stat-label">Clientes Satisfechos</div>
+    </div>
+    <div class="stat-item" data-target="8">
+      <div class="stat-number">0+</div>
+      <div class="stat-label">Soluciones Desplegadas</div>
+    </div>
+    <div class="stat-item" data-target="15">
+      <div class="stat-number">0+</div>
+      <div class="stat-label">Años de Experiencia</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROYECTOS DESTACADOS -->
+<section id="projects">
+  <span class="section-label">Proyectos Destacados</span>
+  <h2 class="section-title">Plataformas en Producción</h2>
+
+  <div class="projects-grid">
+    <!-- MULTINIVEL -->
+    <div class="project-card">
+      <div class="project-image">
+        <img src="https://39ac8d3c846321cac7b8ef50b3feee94.cdn.bubble.io/f1790235412730x513101739622926000/Logo_Multinivel_tumbl.png" alt="Multinivel" draggable="false">
+      </div>
+      <div class="project-content">
+        <h3 class="project-name">Multinivel</h3>
+        <p class="project-type">CRM · Multi-nivel</p>
+        <p class="project-desc">Plataforma de gestión completa para distribuidores de redes multinivel. Gestión de equipos, comisiones, reportes automáticos e integración IA para análisis de desempeño.</p>
+        <div class="project-links">
+          <a href="https://multinivel-24770.bubbleapps.io/version-test/" class="project-link" target="_blank">Acceder App →</a>
+          <a href="https://vt.tiktok.com/ZSqVY7VCS/" class="project-link" target="_blank">Ver Demo →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRESTIGEBOOK -->
+    <div class="project-card">
+      <div class="project-image">
+        <img src="https://39ac8d3c846321cac7b8ef50b3feee94.cdn.bubble.io/f1790235406406x832396023747428900/Logo_PrestigeBook_tumbl.png" alt="PrestigeBook" draggable="false">
+      </div>
+      <div class="project-content">
+        <h3 class="project-name">PrestigeBook</h3>
+        <p class="project-type">CRM · IA Assistant</p>
+        <p class="project-desc">Sistema CRM especializado para distribuidores Royal Prestige. Asistente IA entrenado, gestión de prospectos, presentaciones interactivas con pinch-zoom, presupuestos automáticos.</p>
+        <div class="project-links">
+          <a href="https://youtube.com/shorts/d8lXCJwi5ro?si=C1nvpftpNrFOEqeQ" class="project-link" target="_blank">Promo →</a>
+          <a href="https://vt.tiktok.com/ZSqVY4kMv/" class="project-link" target="_blank">Asistente Demo →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MENUCHAT -->
+    <div class="project-card">
+      <div class="project-image">
+        <img src="https://39ac8d3c846321cac7b8ef50b3feee94.cdn.bubble.io/f1790235399913x225651597971498800/Logo_Menuchat_tumbl.png" alt="MenuChat" draggable="false">
+      </div>
+      <div class="project-content">
+        <h3 class="project-name">MenuChat</h3>
+        <p class="project-type">IA · WhatsApp Automático</p>
+        <p class="project-desc">Asistente IA conversacional para restaurantes. Convierte WhatsApp en máquina de pedidos automática, atendiendo 24/7 con menú inteligente, confirmaciones y gestión de órdenes.</p>
+        <div class="project-links">
+          <a href="https://vt.tiktok.com/ZSqV2XfKu/" class="project-link" target="_blank">Promo →</a>
+          <a href="https://vt.tiktok.com/ZSqV2HoXG/" class="project-link" target="_blank">Asistente Demo →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer class="footer">
+  <a href="https://byronmetalia.github.io/mi-portafolio/" class="footer-btn" target="_blank">Sobre mí</a>
   <p>© 2026 Byron Jay. Todos los derechos reservados.</p>
 </footer>
+
+<!-- SCRIPT PARA CONTADORES Y PROTECCIÓN ADICIONAL -->
+<script>
+  // Prevenir arrastre de imágenes
+  document.addEventListener('dragstart', function (e) {
+    if (e.target.nodeName === 'IMG') {
+      e.preventDefault();
+    }
+  });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const statsSection = document.querySelector(".stats-section");
+    const statItems = document.querySelectorAll(".stat-item");
+    let animated = false;
+
+    function runCounters() {
+      statItems.forEach(item => {
+        item.classList.add("visible");
+        const numberDiv = item.querySelector(".stat-number");
+        const target = +item.getAttribute("data-target");
+        let count = 0;
+        const speed = 2000 / target;
+
+        const updateCount = () => {
+          if (count < target) {
+            count++;
+            numberDiv.innerText = "+" + count;
+            setTimeout(updateCount, speed);
+          } else {
+            numberDiv.innerText = "+" + target;
+          }
+        };
+        updateCount();
+      });
+    }
+
+    function checkScroll() {
+      const rect = statsSection.getBoundingClientRect();
+      const screenHeight = window.innerHeight || document.documentElement.clientHeight;
+      if (rect.top <= screenHeight - 100 && !animated) {
+        animated = true;
+        runCounters();
+      }
+    }
+
+    window.addEventListener("scroll", checkScroll);
+    checkScroll();
+  });
+</script>
 
 </body>
 </html>
