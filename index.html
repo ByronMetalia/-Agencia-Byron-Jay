@@ -28,7 +28,7 @@ html, body {
 }
 
 .logo-section img {
-  max-width: 300px;
+  max-width: 320px;
   height: auto;
   pointer-events: none;
   user-select: none;
@@ -82,19 +82,18 @@ html, body {
 }
 
 .features {
-  padding: 100px 30px; /* Un poco más de espacio para que los iconos sobresalgan cómodamente */
+  padding: 100px 30px;
   background: rgba(10, 14, 39, 0.5);
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 35px; /* Margen ampliado para evitar choques cuando crezcan los iconos */
+  gap: 35px;
   max-width: 1100px;
   margin: 0 auto;
 }
 
-/* ── EFECTO 3D Y MOVIMIENTO PARA .features .card ── */
 .features .card {
   background: rgba(0, 217, 255, 0.08);
   border: 1.5px solid rgba(0, 217, 255, 0.3);
@@ -103,10 +102,9 @@ html, body {
   backdrop-filter: blur(15px);
   cursor: pointer;
   text-align: center;
-  overflow: visible; /* CRUCIAL: Permite que los elementos salgan del div */
+  overflow: visible;
   position: relative;
   z-index: 1;
-  
   perspective: 1000px;
   transform-style: preserve-3d;
   transition: transform 0.2s cubic-bezier(0.03, 0.98, 0.52, 0.99), 
@@ -120,17 +118,16 @@ html, body {
   background: rgba(0, 217, 255, 0.18);
   box-shadow: 0 20px 50px rgba(0, 217, 255, 0.45), inset 0 0 25px rgba(0, 217, 255, 0.2);
   transform: translateY(-14px) scale(1.06) rotateX(5deg) rotateY(-5deg);
-  z-index: 10; /* Pasa al frente de los demás elementos */
+  z-index: 10;
 }
 
-/* Efecto al presionar (preset/active) con más dinamismo */
 .features .card:active {
   transform: translateY(-4px) scale(1.02) rotateX(2deg) rotateY(-2deg);
   box-shadow: 0 8px 25px rgba(0, 217, 255, 0.3);
 }
 
 .card .icon-img {
-  width: 72px; /* Ligeramente más grandes por defecto */
+  width: 72px;
   height: 72px;
   object-fit: contain;
   margin-bottom: 15px;
@@ -140,7 +137,6 @@ html, body {
   transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
 }
 
-/* El icono webp toma absoluto protagonismo sobresaliendo y brillando mágicamente */
 .features .card:hover .icon-img {
   transform: scale(1.45) translateY(-10px) translateZ(50px);
   filter: drop-shadow(0 15px 20px rgba(0, 217, 255, 0.6));
@@ -224,7 +220,6 @@ html, body {
   line-height: 1.6;
 }
 
-/* ── FASES DEL PROCESO ── */
 .fases-section {
   padding: 80px 30px;
   max-width: 1100px;
@@ -276,7 +271,6 @@ html, body {
   line-height: 1.6;
 }
 
-/* ── CTA FINAL ── */
 .cta {
   text-align: center;
   padding: 80px 30px;
@@ -311,7 +305,6 @@ html, body {
   box-shadow: 0 0 30px rgba(0, 217, 255, 0.4);
 }
 
-/* ── RESEÑAS / TESTIMONIOS ── */
 .testimonials-section {
   padding: 80px 30px;
   max-width: 1100px;
@@ -375,9 +368,9 @@ html, body {
 
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 30px;
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 0 auto;
   text-align: center;
 }
@@ -410,7 +403,6 @@ html, body {
   font-weight: 700;
 }
 
-/* ── PROYECTOS DESTACADOS ── */
 #projects {
   padding: 80px 30px;
   max-width: 1100px;
@@ -745,6 +737,10 @@ html, body {
       <div class="stat-number">0+</div>
       <div class="stat-label">Años de Experiencia</div>
     </div>
+    <div class="stat-item" id="visitas-item" data-target="0">
+      <div class="stat-number" id="visitas-number">0</div>
+      <div class="stat-label">Visitas</div>
+    </div>
   </div>
 </section>
 
@@ -810,7 +806,7 @@ html, body {
   <p>© 2026 Byron Jay. Veracruz, Ver. Mex.</p>
 </footer>
 
-<!-- SCRIPT PARA EFECTO 3D INTERACTIVO, CONTADORES Y PROTECCIÓN -->
+<!-- SCRIPT PARA EFECTO 3D INTERACTIVO, CONTADORES Y LECTURA DE URL -->
 <script>
   // Prevenir arrastre de imágenes
   document.addEventListener('dragstart', function (e) {
@@ -840,8 +836,19 @@ html, body {
     });
   });
 
-  // Lógica de Contadores
+  // Lógica de Contadores y Parámetro URL de Visitas
   document.addEventListener("DOMContentLoaded", function () {
+    // Capturar parámetro ?visitas= de la URL de forma dinámica
+    const urlParams = new URLSearchParams(window.location.search);
+    const visitasParam = urlParams.get('visitas');
+    const visitasItem = document.getElementById('visitas-item');
+    const visitasNumberDiv = document.getElementById('visitas-number');
+
+    if (visitasParam !== null) {
+      visitasItem.setAttribute("data-target", visitasParam);
+      // Si el valor es negativo o cualquier número ingresado, lo mostramos directamente sin animación de conteo o con conteo según prefieras. Aquí asignamos el valor directo o dejamos que el contador lo alcance.
+    }
+
     const statsSection = document.querySelector(".stats-section");
     const statItems = document.querySelectorAll(".stat-item");
     let animated = false;
@@ -850,9 +857,17 @@ html, body {
       statItems.forEach(item => {
         item.classList.add("visible");
         const numberDiv = item.querySelector(".stat-number");
-        const target = +item.getAttribute("data-target");
+        const targetAttr = item.getAttribute("data-target");
+        
+        // Verificamos si es el contador de visitas para manejar números negativos o fijos correctamente
+        if (item.id === "visitas-item") {
+          numberDiv.innerText = targetAttr;
+          return;
+        }
+
+        const target = +targetAttr;
         let count = 0;
-        const speed = 2000 / target;
+        const speed = 2000 / (target || 1);
 
         const updateCount = () => {
           if (count < target) {
