@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Byron Jay - Soluciones Digitales</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+  width: 100%;
+  background: linear-gradient(135deg, #0a0e27 0%, #1a0b2e 50%, #0d1b3d 100%);
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  color: #e0e0e0;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 30px;
+  background: rgba(0, 217, 255, 0.03);
+}
+
+.logo-section img {
+  max-width: 200px;
+  height: auto;
+}
+
+.hero {
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 30px;
+  background: linear-gradient(135deg, rgba(0, 217, 255, 0.05), rgba(0, 150, 200, 0.03));
+}
+
+.hero h1 {
+  font-size: 3rem;
+  color: #00d9ff;
+  font-weight: 800;
+  margin-bottom: 20px;
+  text-shadow: 0 0 40px rgba(0, 217, 255, 0.5);
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: #00b4ff;
+  margin-bottom: 30px;
+  font-weight: 300;
+}
+
+.btn {
+  padding: 14px 40px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: 2px solid #00d9ff;
+  background: rgba(0, 217, 255, 0.1);
+  color: #00d9ff;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn:hover {
+  background: rgba(0, 217, 255, 0.3);
+  box-shadow: 0 0 40px rgba(0, 217, 255, 0.6);
+  transform: translateY(-4px);
+}
+
+.features {
+  padding: 80px 30px;
+  background: rgba(10, 14, 39, 0.5);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.card {
+  background: rgba(0, 217, 255, 0.08);
+  border: 1.5px solid rgba(0, 217, 255, 0.3);
+  border-radius: 15px;
+  padding: 30px 25px;
+  backdrop-filter: blur(15px);
+  transition: all 0.4s ease;
+  cursor: pointer;
+  text-align: center;
+}
+
+.card:hover {
+  border-color: #00d9ff;
+  background: rgba(0, 217, 255, 0.15);
+  box-shadow: 0 0 50px rgba(0, 217, 255, 0.5), inset 0 0 20px rgba(0, 217, 255, 0.1);
+  transform: translateY(-12px) scale(1.04);
+}
+
+.card .icon {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+}
+
+.card h3 {
+  color: #00d9ff;
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.card p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.servicios {
+  padding: 80px 30px;
+  background: rgba(0, 217, 255, 0.02);
+}
+
+.servicios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.servicio-card {
+  background: rgba(0, 217, 255, 0.08);
+  border: 1.5px solid rgba(0, 217, 255, 0.3);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+.servicio-card:hover {
+  border-color: #00d9ff;
+  background: rgba(0, 217, 255, 0.15);
+  box-shadow: 0 0 50px rgba(0, 217, 255, 0.5);
+  transform: translateY(-12px);
+}
+
+.servicio-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.servicio-content {
+  padding: 25px;
+}
+
+.servicio-content h3 {
+  color: #00d9ff;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.servicio-content p {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.cta {
+  text-align: center;
+  padding: 80px 30px;
+  background: rgba(0, 217, 255, 0.05);
+}
+
+.cta h2 {
+  font-size: 2.5rem;
+  color: #00d9ff;
+  margin-bottom: 30px;
+  text-shadow: 0 0 30px rgba(0, 217, 255, 0.4);
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-secondary {
+  background: transparent;
+  border-color: rgba(0, 217, 255, 0.4);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.btn-secondary:hover {
+  border-color: #00d9ff;
+  color: #00d9ff;
+  background: rgba(0, 217, 255, 0.1);
+  box-shadow: 0 0 30px rgba(0, 217, 255, 0.4);
+}
+
+.footer {
+  text-align: center;
+  padding: 30px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85rem;
+  border-top: 1px solid rgba(0, 217, 255, 0.2);
+}
+
+.footer a {
+  color: #00d9ff;
+  text-decoration: none;
+  margin: 0 15px;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: #00b4ff;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.2rem;
+  color: #00d9ff;
+  margin-bottom: 50px;
+  text-shadow: 0 0 30px rgba(0, 217, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+  .hero h1 { font-size: 2rem; }
+  .section-title { font-size: 1.6rem; }
+  .servicios-grid { grid-template-columns: 1fr; }
+  .cta-buttons { flex-direction: column; }
+  .btn { width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<!-- LOGO -->
+<div class="logo-section">
+  <img src="https://39ac8d3c846321cac7b8ef50b3feee94.cdn.bubble.io/f1790198636251x573723630484219000/LOGO%20BYRON_JAY.svg" alt="Byron Jay">
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <h1>Futuro Digital</h1>
+    <p>Automatiza. Transforma. Domina.</p>
+    <a href="https://wa.me/522712097690" class="btn" target="_blank">Contactar</a>
+  </div>
+</div>
+
+<!-- CARACTERÍSTICAS -->
+<section class="features">
+  <div class="grid">
+    <div class="card">
+      <div class="icon">🤖</div>
+      <h3>Agentes Inteligentes</h3>
+      <p>Un asistente dentro de tu aplicación que consulta y ayuda</p>
+    </div>
+    <div class="card">
+      <div class="icon">👥</div>
+      <h3>CRM y Clientes</h3>
+      <p>Centraliza contactos e historial en un solo lugar</p>
+    </div>
+    <div class="card">
+      <div class="icon">📅</div>
+      <h3>Citas y Seguimiento</h3>
+      <p>Agenda y recordatorios automáticos</p>
+    </div>
+    <div class="card">
+      <div class="icon">📦</div>
+      <h3>Pedidos y Procesos</h3>
+      <p>Controla solicitudes y entregas sin esfuerzo</p>
+    </div>
+    <div class="card">
+      <div class="icon">📊</div>
+      <h3>Paneles de Información</h3>
+      <p>Tus datos transformados en claridad</p>
+    </div>
+    <div class="card">
+      <div class="icon">⚙️</div>
+      <h3>Automatización</h3>
+      <p>Procesos que funcionan sin intervención manual</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="servicios">
+  <h2 class="section-title">Servicios</h2>
+  <div class="servicios-grid">
+    <div class="servicio-card">
+      <img src="https://39ac8d3c846321cac7b8ef50b3feee94.cdn.bubble.io/f1790196204993x285774083640456320/banner%201.webp" alt="De tu Excel a tu App">
+      <div class="servicio-content">
+        <h3>De tu Excel a tu App</h3>
+        <p>Sube tus datos y consulta al instante con un asistente integrado</p>
+      </div>
+    </div>
+    <div class="servicio-card">
+      <img src="https://39ac8d3c846321cac7b8ef50b3feee94.cdn.bubble.io/f1790204093808x714379191158991900/banner%202.webp" alt="Landing Pages que Venden">
+      <div class="servicio-content">
+        <h3>Landing Pages que Venden</h3>
+        <p>Páginas rápidas y atractivas que convierten visitantes en clientes</p>
+      </div>
+    </div>
+    <div class="servicio-card">
+      <img src="https://39ac8d3c846321cac7b8ef50b3feee94.cdn.bubble.io/f1790223810056x847392598267571200/banner%203.webp" alt="Control y Procesos a la Medida">
+      <div class="servicio-content">
+        <h3>Control y Procesos a la Medida</h3>
+        <p>Sistemas adaptados exactamente a tu forma de trabajar</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta">
+  <h2>¿Listo?</h2>
+  <div class="cta-buttons">
+    <a href="https://wa.me/522712097690" class="btn" target="_blank">WhatsApp</a>
+    <a href="mailto:byron.bayjay@gmail.com" class="btn btn-secondary">Email</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>© 2024 Byron Jay | <a href="https://wa.me/522712097690" target="_blank">💬 WhatsApp</a> <a href="mailto:byron.bayjay@gmail.com">📧 Email</a></p>
+</footer>
+
+</body>
+</html>
