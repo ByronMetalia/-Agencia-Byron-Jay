@@ -13,7 +13,6 @@ html, body {
   font-family: 'Lato', sans-serif;
   color: #e0e0e0;
   scroll-behavior: smooth;
-  /* Evitar selección de texto general en la página */
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -73,6 +72,7 @@ html, body {
   text-transform: uppercase;
   text-decoration: none;
   display: inline-block;
+  word-spacing: 4px;
 }
 
 .btn:hover {
@@ -82,39 +82,68 @@ html, body {
 }
 
 .features {
-  padding: 80px 30px;
+  padding: 100px 30px; /* Un poco más de espacio para que los iconos sobresalgan cómodamente */
   background: rgba(10, 14, 39, 0.5);
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
+  gap: 35px; /* Margen ampliado para evitar choques cuando crezcan los iconos */
   max-width: 1100px;
   margin: 0 auto;
 }
 
-.card {
+/* ── EFECTO 3D Y MOVIMIENTO PARA .features .card ── */
+.features .card {
   background: rgba(0, 217, 255, 0.08);
   border: 1.5px solid rgba(0, 217, 255, 0.3);
   border-radius: 15px;
   padding: 30px 25px;
   backdrop-filter: blur(15px);
-  transition: all 0.4s ease;
   cursor: pointer;
   text-align: center;
+  overflow: visible; /* CRUCIAL: Permite que los elementos salgan del div */
+  position: relative;
+  z-index: 1;
+  
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transition: transform 0.2s cubic-bezier(0.03, 0.98, 0.52, 0.99), 
+              background 0.4s ease, 
+              border-color 0.4s ease, 
+              box-shadow 0.4s ease;
 }
 
-.card:hover {
+.features .card:hover {
   border-color: #00d9ff;
-  background: rgba(0, 217, 255, 0.15);
-  box-shadow: 0 0 50px rgba(0, 217, 255, 0.5), inset 0 0 20px rgba(0, 217, 255, 0.1);
-  transform: translateY(-12px) scale(1.04);
+  background: rgba(0, 217, 255, 0.18);
+  box-shadow: 0 20px 50px rgba(0, 217, 255, 0.45), inset 0 0 25px rgba(0, 217, 255, 0.2);
+  transform: translateY(-14px) scale(1.06) rotateX(5deg) rotateY(-5deg);
+  z-index: 10; /* Pasa al frente de los demás elementos */
 }
 
-.card .icon {
-  font-size: 2.5rem;
-  margin-bottom: 12px;
+/* Efecto al presionar (preset/active) con más dinamismo */
+.features .card:active {
+  transform: translateY(-4px) scale(1.02) rotateX(2deg) rotateY(-2deg);
+  box-shadow: 0 8px 25px rgba(0, 217, 255, 0.3);
+}
+
+.card .icon-img {
+  width: 72px; /* Ligeramente más grandes por defecto */
+  height: 72px;
+  object-fit: contain;
+  margin-bottom: 15px;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
+}
+
+/* El icono webp toma absoluto protagonismo sobresaliendo y brillando mágicamente */
+.features .card:hover .icon-img {
+  transform: scale(1.45) translateY(-10px) translateZ(50px);
+  filter: drop-shadow(0 15px 20px rgba(0, 217, 255, 0.6));
 }
 
 .card h3 {
@@ -122,12 +151,22 @@ html, body {
   font-size: 1.2rem;
   margin-bottom: 8px;
   font-weight: 700;
+  transition: transform 0.3s ease;
+}
+
+.features .card:hover h3 {
+  transform: translateZ(25px);
 }
 
 .card p {
   color: rgba(255, 255, 255, 0.6);
   font-size: 0.9rem;
   line-height: 1.5;
+  transition: transform 0.3s ease;
+}
+
+.features .card:hover p {
+  transform: translateZ(15px);
 }
 
 .servicios {
@@ -181,6 +220,58 @@ html, body {
 
 .servicio-content p {
   color: rgba(255, 255, 255, 0.65);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ── FASES DEL PROCESO ── */
+.fases-section {
+  padding: 80px 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.fases-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.fase-card {
+  background: rgba(0, 217, 255, 0.06);
+  border: 1.5px solid rgba(0, 217, 255, 0.3);
+  border-radius: 15px;
+  padding: 35px 25px;
+  position: relative;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(10px);
+}
+
+.fase-card:hover {
+  border-color: #00d9ff;
+  background: rgba(0, 217, 255, 0.12);
+  box-shadow: 0 0 40px rgba(0, 217, 255, 0.4);
+  transform: translateY(-10px);
+}
+
+.fase-number {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: rgba(0, 217, 255, 0.25);
+  margin-bottom: 15px;
+  display: block;
+  line-height: 1;
+}
+
+.fase-card h3 {
+  color: #00d9ff;
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.fase-card p {
+  color: rgba(255, 255, 255, 0.7);
   font-size: 0.95rem;
   line-height: 1.6;
 }
@@ -376,7 +467,6 @@ html, body {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  /* Esquinas redondeadas a 10px en los nuevos logos de proyectos */
   border-radius: 10px;
   display: block;
   transition: transform 0.4s ease;
@@ -494,7 +584,7 @@ html, body {
 @media (max-width: 768px) {
   .hero h1 { font-size: 2rem; }
   .section-title { font-size: 1.6rem; }
-  .servicios-grid, .projects-grid, .testimonials-grid { grid-template-columns: 1fr; }
+  .servicios-grid, .fases-grid, .projects-grid, .testimonials-grid { grid-template-columns: 1fr; }
   .cta-buttons { flex-direction: column; }
   .btn { width: 100%; }
 }
@@ -511,8 +601,8 @@ html, body {
 <div class="hero">
   <div>
     <h1>Futuro Digital</h1>
-    <p>Automatiza. Transforma. Domina.</p>
-    <a href="https://wa.me/522712097690" class="btn" target="_blank">Contactar</a>
+    <p>Desarrollo sistemas a la medida para<br>automatizar la operación de tu empresa</p>
+    <a href="https://wa.me/522712097690" class="btn" target="_blank">Cotizar Sistema</a>
   </div>
 </div>
 
@@ -520,32 +610,32 @@ html, body {
 <section class="features">
   <div class="grid">
     <div class="card">
-      <div class="icon">🤖</div>
+      <img src="https://39ac8d3c846321cac7b8ef50b3feee94.cdn.bubble.io/f1790267233147x972350047791388900/agentes_especializados.webp" alt="Agentes especializados" class="icon-img" draggable="false">
       <h3>Agentes Inteligentes</h3>
       <p>Un asistente dentro de tu aplicación que consulta y ayuda</p>
     </div>
     <div class="card">
-      <div class="icon">👥</div>
+      <img src="https://39ac8d3c846321cac7b8ef50b3feee94.cdn.bubble.io/f1790267261196x421341299499590200/CRM_clientes.webp" alt="CRM clientes" class="icon-img" draggable="false">
       <h3>CRM y Clientes</h3>
       <p>Centraliza contactos e historial en un solo lugar</p>
     </div>
     <div class="card">
-      <div class="icon">📅</div>
+      <img src="https://39ac8d3c846321cac7b8ef50b3feee94.cdn.bubble.io/f1790267244570x720418747690532200/citas_seguimiento.webp" alt="Citas y seguimiento" class="icon-img" draggable="false">
       <h3>Citas y Seguimiento</h3>
       <p>Agenda y recordatorios automáticos</p>
     </div>
     <div class="card">
-      <div class="icon">📦</div>
+      <img src="https://39ac8d3c846321cac7b8ef50b3feee94.cdn.bubble.io/f1790267250720x376630916148347460/pedidos_procesos.webp" alt="pedidos y procesos" class="icon-img" draggable="false">
       <h3>Pedidos y Procesos</h3>
       <p>Controla solicitudes y entregas sin esfuerzo</p>
     </div>
     <div class="card">
-      <div class="icon">📊</div>
+      <img src="https://39ac8d3c846321cac7b8ef50b3feee94.cdn.bubble.io/f1790267274414x100866745397380160/paneles_informacion.webp" alt="Paneles de Información" class="icon-img" draggable="false">
       <h3>Paneles de Información</h3>
       <p>Tus datos transformados en claridad</p>
     </div>
     <div class="card">
-      <div class="icon">⚙️</div>
+      <img src="https://39ac8d3c846321cac7b8ef50b3feee94.cdn.bubble.io/f1790267268335x586246301333009700/automatizacion.webp" alt="Automatización" class="icon-img" draggable="false">
       <h3>Automatización</h3>
       <p>Procesos que funcionan sin intervención manual</p>
     </div>
@@ -576,6 +666,29 @@ html, body {
         <h3>Control y Procesos a la Medida</h3>
         <p>Sistemas adaptados exactamente a tu forma de trabajar</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- FASES DEL PROCESO -->
+<section class="fases-section">
+  <span class="section-label">Paso a Paso</span>
+  <h2 class="section-title">¿Cómo trabajo?</h2>
+  <div class="fases-grid">
+    <div class="fase-card">
+      <span class="fase-number">01</span>
+      <h3>Me platicas tu proceso</h3>
+      <p>Analizamos juntos cómo manejan sus datos actualmente, ya sea mediante hojas de Excel o enfrentando los retos del caos operativo diario.</p>
+    </div>
+    <div class="fase-card">
+      <span class="fase-number">02</span>
+      <h3>Yo lo construyo</h3>
+      <p>Diseño y desarrollo el sistema exacto que tu empresa necesita, totalmente a la medida y optimizado para tu flujo de trabajo.</p>
+    </div>
+    <div class="fase-card">
+      <span class="fase-number">03</span>
+      <h3>Te lo entrego funcionando</h3>
+      <p>Tu empresa operando sin fricción ni tareas manuales, lista para escalar con máxima eficiencia y rendimiento.</p>
     </div>
   </div>
 </section>
@@ -624,11 +737,11 @@ html, body {
       <div class="stat-number">0+</div>
       <div class="stat-label">Clientes Satisfechos</div>
     </div>
-    <div class="stat-item" data-target="8">
+    <div class="stat-item" data-target="15">
       <div class="stat-number">0+</div>
       <div class="stat-label">Soluciones Desplegadas</div>
     </div>
-    <div class="stat-item" data-target="15">
+    <div class="stat-item" data-target="8">
       <div class="stat-number">0+</div>
       <div class="stat-label">Años de Experiencia</div>
     </div>
@@ -694,10 +807,10 @@ html, body {
 <!-- FOOTER -->
 <footer class="footer">
   <a href="https://byronmetalia.github.io/mi-portafolio/" class="footer-btn" target="_blank">Sobre mí</a>
-  <p>© 2026 Byron Jay. Todos los derechos reservados.</p>
+  <p>© 2026 Byron Jay. Veracruz, Ver. Mex.</p>
 </footer>
 
-<!-- SCRIPT PARA CONTADORES Y PROTECCIÓN ADICIONAL -->
+<!-- SCRIPT PARA EFECTO 3D INTERACTIVO, CONTADORES Y PROTECCIÓN -->
 <script>
   // Prevenir arrastre de imágenes
   document.addEventListener('dragstart', function (e) {
@@ -706,6 +819,28 @@ html, body {
     }
   });
 
+  // Efecto dinámico 3D con movimiento del mouse en las tarjetas .features .card
+  document.querySelectorAll('.features .card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left; 
+      const y = e.clientY - rect.top;  
+      
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = -((y - centerY) / centerY) * 12; 
+      const rotateY = ((x - centerX) / centerX) * 12;  
+
+      card.style.transform = `translateY(-14px) scale(1.06) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'translateY(0px) scale(1) rotateX(0deg) rotateY(0deg)';
+    });
+  });
+
+  // Lógica de Contadores
   document.addEventListener("DOMContentLoaded", function () {
     const statsSection = document.querySelector(".stats-section");
     const statItems = document.querySelectorAll(".stat-item");
